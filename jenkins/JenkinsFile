@@ -13,14 +13,12 @@ pipeline {
             steps {
                 dir('bugtracker-backend') {
                     sh '''
-                     go test -v ./... 2>&1 | go-junit-report > test-results.xml
-
-                    #Generate coverage report
-                    go test -coverageprofile=coverage.out -covermode=atomic ./...
-                    go tool cover -html=coverage.out -o coverage.html
-
+            
+                    go test -v ./... 2>&1 | go-junit-report > test-results.xml
                     mkdir -p reports
-                    mv coverage.html reports/
+                    go test -coverprofile=coverage.out -covermode=atomic ./...
+                    go tool cover -html=coverage.out -o reports/coverage.html
+            
                     '''           
                 }
             }
