@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             steps{
-                dir('bugtrucker-frontend'){
+                dir('bugtracker-frontend'){
                     sh '''
                         npm ci
                         npm test
