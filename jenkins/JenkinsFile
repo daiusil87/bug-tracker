@@ -2,7 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Unit Tests- Backend') {
+
+        stage("Execute Unite tests"){
+            parallel{
+
+                    stage('Unit Tests- Backend') {
             agent {
                 docker {
                     image 'snakee/golang-junit:1.21'
@@ -34,7 +38,7 @@ pipeline {
             }
         }
 
-        stage('Unit Tests- FrontEnd'){
+            stage('Unit Tests- FrontEnd'){
             agent{
                 docker{
                     image 'node:20-alpine'
@@ -64,4 +68,16 @@ pipeline {
 
         }
     }
+
+        
+
+            }
+        }
+
+        post{
+            always{
+                cleanWs()
+            }
+        }
+        
 }
