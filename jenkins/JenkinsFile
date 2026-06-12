@@ -1,4 +1,4 @@
-pipeline {git
+﻿pipeline {git
     agent any
 
     stages {
